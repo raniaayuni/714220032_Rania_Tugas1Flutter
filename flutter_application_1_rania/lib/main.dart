@@ -3,6 +3,8 @@ import 'dashboard_page.dart';
 import 'add_page.dart';
 import 'update_page.dart';
 import 'login_page.dart';
+import 'produk_page.dart';
+import 'produk_form.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,7 +33,7 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          // Four buttons for the menu
+          // Row for the first two menu buttons
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -57,6 +59,7 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
+          // Row for the next two menu buttons
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -64,7 +67,6 @@ class HomePage extends StatelessWidget {
                 icon: Icons.update,
                 label: 'Update',
                 onTap: () {
-                  // Pass existing data for the update; modify with actual data as needed
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -80,7 +82,6 @@ class HomePage extends StatelessWidget {
                 icon: Icons.logout,
                 label: 'Logout',
                 onTap: () {
-                  // Navigate back to login page on logout
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => LoginPage()),
@@ -89,8 +90,24 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
+          // Adding button for Products page
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              MenuButton(
+                icon: Icons.shopping_cart,
+                label: 'Products',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProdukPage()),
+                  );
+                },
+              ),
+            ],
+          ),
           SizedBox(height: 20),
-          // Adding student information
+          // Student information
           Text('NPM: 714220032'),
           Text('Name: Rania Ayuni Kartini Fitri'),
         ],
