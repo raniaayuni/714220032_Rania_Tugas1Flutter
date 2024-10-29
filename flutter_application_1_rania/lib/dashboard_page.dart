@@ -67,6 +67,14 @@ class DashboardPage extends StatelessWidget {
             title: Text('Faktur: ${sale['noFaktur']}'),
             subtitle: Text('Tanggal: ${sale['tanggal']}, Customer: ${sale['customer']}'),
             trailing: Text('Total: ${sale['total']}'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SaleDetailPage(sale: sale),
+                ),
+              );
+            },
           );
         },
       ),
@@ -76,6 +84,38 @@ class DashboardPage extends StatelessWidget {
           Navigator.pop(context);
         },
         child: Icon(Icons.arrow_back),
+      ),
+    );
+  }
+}
+
+class SaleDetailPage extends StatelessWidget {
+  final Map<String, dynamic> sale;
+
+  SaleDetailPage({required this.sale});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Detail Faktur ${sale['noFaktur']}'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('Faktur: ${sale['noFaktur']}', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            Text('Tanggal: ${sale['tanggal']}', style: TextStyle(fontSize: 16)),
+            SizedBox(height: 8),
+            Text('Customer: ${sale['customer']}', style: TextStyle(fontSize: 16)),
+            SizedBox(height: 8),
+            Text('Jumlah Barang: ${sale['jumlahBarang']}', style: TextStyle(fontSize: 16)),
+            SizedBox(height: 8),
+            Text('Total: ${sale['total']}', style: TextStyle(fontSize: 16)),
+          ],
+        ),
       ),
     );
   }
